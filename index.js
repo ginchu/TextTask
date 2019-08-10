@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var mysql = require('mysql');
+var path = require("path");
 require('dotenv').config();
 
 var checkdb = require("./checkdb.js");
@@ -14,6 +15,7 @@ app.use(express.static('public'));
 app.get('/',function(req,res,next){
     res.sendFile('/public/index.html');
 });
+
 
 // from the form tag, puts in the data
 app.post('/thankyou.html', function(req, res) {

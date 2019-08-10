@@ -29,13 +29,6 @@ app.post('/thankyou.html', function(req, res) {
         password: process.env.PASSWORD,
         database: process.env.DATABASE,
     });
-      
-    /*var con = mysql.createConnection({
-        host: process.env.HOST,
-        user: process.env.USER,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE,
-    });*/
     pool.getConnection(function(err, connection) {
         console.log("Connected!");
         var sql = "INSERT INTO userinfo (Name, Task, Phone, Time) VALUES ('"+req.body.Name+"','"+req.body.Task+"','"+req.body.Phone+"','"+req.body.Time+"')";
@@ -45,18 +38,9 @@ app.post('/thankyou.html', function(req, res) {
             if (err) throw err;
         });
     });
-
-    /*con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    var sql = "INSERT INTO userinfo (Name, Task, Phone, Time) VALUES ('"+req.body.Name+"','"+req.body.Task+"','"+req.body.Phone+"','"+req.body.Time+"')";
-    con.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log("1 record inserted");
-    });
-    });*/
 });
 
+// goes to checkdb.js to perform the infinite loop
 checkdb.checkTime();
 
 app.listen(process.env.PORT || 8080, function() {

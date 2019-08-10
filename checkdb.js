@@ -37,14 +37,12 @@ module.exports.checkTime = function(){
                 database: process.env.DATABASE,
             });
             
-
             pool.getConnection(function(err, connection) {
                 connection.query("SELECT Name, Task, Phone FROM userinfo WHERE Time = '" + time + "'", function (err, result, fields) {
                     if (err) throw err;
                     //result is [RowDataPacket array]
                     console.log(result);
                     console.log(result.length);
-                    console.log(typeof result[0] === "undefined");
                     if (result.length > 0){
                         client.messages
                             .create({
@@ -62,7 +60,7 @@ module.exports.checkTime = function(){
 
             setTimeout(function() {
                 next();
-            }, 60000);
+            }, 30000);
         },
         function(err){
             console.error(err);

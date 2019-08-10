@@ -12,7 +12,7 @@ app.use(express.static('public'));
 // gets the html file and puts it up 
 //(this file works both as server and for database)
 app.get('/',function(req,res,next){
-    res.sendFile('index.html', {root: '/Users/ginak/Desktop/TextTask/public'});
+    res.sendFile('/public/index.html');
 });
 
 // from the form tag, puts in the data

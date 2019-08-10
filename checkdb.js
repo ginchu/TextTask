@@ -28,8 +28,7 @@ module.exports.checkTime = function(){
             }           
             
             var time = estHour + ":" + min;
-
-            console.log(time);
+            
             var pool  = mysql.createPool({
                 host: process.env.HOST,
                 user: process.env.USER,

@@ -1,5 +1,5 @@
 {
-  "name": "nodejs",
+  "name": "texttask",
   "version": "1.0.0",
   "description": "sms nodejs",
   "main": "index.js",

@@ -9,10 +9,10 @@ module.exports.checkTime = function(){
     async.forever(
         function(next){
             var con = mysql.createConnection({
-                host: "localhost",
-                user: "user1",
-                password: "qaz123",
-                database: "reminderdb",
+                host: process.env.HOST,
+                user: process.env.USER,
+                password: process.env.PASSWORD,
+                database: process.env.DATABASE,
             });
 
             var today = new Date();        

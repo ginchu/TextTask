@@ -42,6 +42,6 @@ app.post('/thankyou', function(req, res) {
 
 checkdb.checkTime();
 
-app.listen(8080, function() {
+app.listen(process.env.PORT || 8080, function() {
   console.log('Listening at: localhost:8080');
 });

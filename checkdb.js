@@ -60,7 +60,7 @@ module.exports.checkTime = function(){
 
             setTimeout(function() {
                 next();
-            }, 30000);
+            }, 60000);
         },
         function(err){
             console.error(err);

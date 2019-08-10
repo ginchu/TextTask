@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+} 
+body {
+    padding-top: 40px;
+    background-color: #EDD95F;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+}
+  
+h2 {
+    color: black;
+    font-size: 45px;
+}
+h3 {
+    font-size: 20px;
+    font-style: oblique;
+    font-weight: 500;
+    padding: 10px;
+}
+p{
+    font-size: 25px;
+    /*font-style: oblique;*/
+    font-weight: 500;
+    padding: 70px;
+}
+img{
+    width: 200px;
+}
+form {
+    padding: 30px;
+}
+label{
+    font-size: 20px;
+    font-weight: bold;
+}
+input[type=text] {
+    background-color: #EDD95F;
+    font-size: 18px;
+    width: 25%;
+    margin-top: 5px;
+    margin-bottom: 35px;
+    padding: 12px 13px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1.8px solid rgb(65, 65, 65);
+    outline: none;
+
+}
+::placeholder { 
+    color: rgb(187, 174, 91);
+}
+input[type=text]:focus {
+    border-bottom: 3px solid black;
+}
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #EDD95F;
+    border: solid #E68226;
+    border-radius: 5px;
+    color: rgb(112, 67, 25);
+    font-size: 18px;
+    padding: 10px 25px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+input[type=submit]:hover {
+    background-color: #E68226;
+ }

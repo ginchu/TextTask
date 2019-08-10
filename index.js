@@ -8,7 +8,7 @@ require('dotenv').config();
 var checkdb = require("./checkdb.js");
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static('./public'));
 
 // gets the html file and puts it up 
 //(this file works both as server and for database)
@@ -19,7 +19,7 @@ app.get('/',function(req,res,next){
 
 // from the form tag, puts in the data
 app.post('/thankyou.html', function(req, res) {
-    res.sendFile(path.resolve(__dirname,'/public/thankyou.html'));
+    res.sendFile(path.resolve(__dirname,'public/thankyou.html'));
 
     console.log(req.body);
 

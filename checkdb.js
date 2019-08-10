@@ -8,7 +8,13 @@ var async = require("async");
 module.exports.checkTime = function(){
     async.forever(
         function(next){
-            var con = mysql.createConnection({
+            /*var con = mysql.createConnection({
+                host: process.env.HOST,
+                user: process.env.USER,
+                password: process.env.PASSWORD,
+                database: process.env.DATABASE,
+            });*/
+            var pool  = mysql.createPool({
                 host: process.env.HOST,
                 user: process.env.USER,
                 password: process.env.PASSWORD,
@@ -22,7 +28,29 @@ module.exports.checkTime = function(){
             }
             var time = today.getHours() + ":" + min;
 
-            con.connect(function(err) {
+            pool.getConnection(function(err, connection) {
+                connection.query("SELECT Name, Task, Phone FROM userinfo WHERE Time = '" + time + "'", function (err, result, fields) {
+                    if (err) throw err;
+                    //result is [RowDataPacket array]
+                    console.log(result);
+                    console.log(result.length);
+                    console.log(typeof result[0] === "undefined");
+                    if (result.length > 0){
+                        client.messages
+                            .create({
+                                body: 'Hey, '+result[0].Name+'! This is your daily reminder of your task, '+ result[0].Task + '.',
+                                from: '+19143593091',
+                                to:     '+1' + result[0].Phone
+                            })        
+                            .then(message => console.log(message.sid));
+                    }
+                    console.log(time);
+                    connection.release();
+                    if (err) throw err;
+                });
+            });
+
+            /*con.connect(function(err) {
                 if (err) throw err;
                 con.query("SELECT Name, Task, Phone FROM userinfo WHERE Time = '" + time + "'", function (err, result, fields) {
                     if (err) throw err;
@@ -42,7 +70,7 @@ module.exports.checkTime = function(){
                 
                     console.log(time);
                 });
-            });
+            });*/
             setTimeout(function() {
                 next();
             }, 60000);

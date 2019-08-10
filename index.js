@@ -22,14 +22,30 @@ app.post('/thankyou', function(req, res) {
     console.log(req.body);
 
     // connects to sql db
-    var con = mysql.createConnection({
+    var pool  = mysql.createPool({
         host: process.env.HOST,
         user: process.env.USER,
         password: process.env.PASSWORD,
         database: process.env.DATABASE,
     });
+      
+    /*var con = mysql.createConnection({
+        host: process.env.HOST,
+        user: process.env.USER,
+        password: process.env.PASSWORD,
+        database: process.env.DATABASE,
+    });*/
+    pool.getConnection(function(err, connection) {
+        console.log("Connected!");
+        var sql = "INSERT INTO userinfo (Name, Task, Phone, Time) VALUES ('"+req.body.Name+"','"+req.body.Task+"','"+req.body.Phone+"','"+req.body.Time+"')";
+        connection.query(sql, function (err, result) {
+            console.log("1 record inserted");
+            connection.release();
+            if (err) throw err;
+        });
+    });
 
-    con.connect(function(err) {
+    /*con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");
     var sql = "INSERT INTO userinfo (Name, Task, Phone, Time) VALUES ('"+req.body.Name+"','"+req.body.Task+"','"+req.body.Phone+"','"+req.body.Time+"')";
@@ -37,7 +53,7 @@ app.post('/thankyou', function(req, res) {
         if (err) throw err;
         console.log("1 record inserted");
     });
-    });
+    });*/
 });
 
 checkdb.checkTime();

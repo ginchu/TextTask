@@ -17,7 +17,7 @@ app.get('/',function(req,res,next){
 
 // from the form tag, puts in the data
 app.post('/thankyou.html', function(req, res) {
-    res.sendFile('./public/thankyou.html');
+    res.sendFile('/public/thankyou.html');
 
     console.log(req.body);
 
